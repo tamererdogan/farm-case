@@ -3536,6 +3536,7 @@ MonoBehaviour:
   yRotationSensivity: 0.1
   inventoryUI: {fileID: 1282729224}
   marketUI: {fileID: 1916470242}
+  clickDistance: 3
 --- !u!54 &966742481
 Rigidbody:
   m_ObjectHideFlags: 0

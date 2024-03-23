@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scythe
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: defb3cd6a9a614a42899bc1fa16d51c1, type: 3}
+      propertyPath: m_TagString
+      value: CollectableItem
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: defb3cd6a9a614a42899bc1fa16d51c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

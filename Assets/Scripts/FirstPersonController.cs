@@ -38,6 +38,9 @@ public class FirstPersonController : MonoBehaviour
 
     private Rigidbody rigidBody;
 
+    [SerializeField]
+    private float clickDistance;
+
     void Start()
     {
         LockCursor();
@@ -47,8 +50,10 @@ public class FirstPersonController : MonoBehaviour
         playerInput.Player.Look.Enable();
         playerInput.Player.InventoryButton.Enable();
         playerInput.Player.MarketButton.Enable();
+        playerInput.Player.PickButton.Enable();
         playerInput.Player.InventoryButton.performed += InventoryButtonClicked;
         playerInput.Player.MarketButton.performed += MarketButtonClicked;
+        playerInput.Player.PickButton.performed += PickButtonClicked;
     }
 
     void Update()
@@ -73,6 +78,31 @@ public class FirstPersonController : MonoBehaviour
         if (nextAngle > 30 || nextAngle < -30)
             return;
         Camera.main.transform.rotation *= Quaternion.Euler(desiredAngle, 0, 0);
+    }
+
+    private void PickButtonClicked(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, clickDistance))
+        {
+            if (hit.collider.tag != "CollectableItem")
+                return;
+
+            int collectId = -1;
+            if (hit.collider.name.Contains("Spade"))
+                collectId = 0;
+            if (hit.collider.name.Contains("Hoe"))
+                collectId = 1;
+            if (hit.collider.name.Contains("Scythe"))
+                collectId = 2;
+
+            if (collectId == -1)
+                return;
+
+            InventoryManager.Instance.AddItem(collectId);
+            Destroy(hit.collider.gameObject);
+        }
     }
 
     private void InventoryButtonClicked(UnityEngine.InputSystem.InputAction.CallbackContext context)

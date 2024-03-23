@@ -62,6 +62,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PickButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""78b6846c-2a32-4f12-872e-54f653f82685"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""MarketButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc31d7a5-140b-40b1-9a63-e3baac3d325c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -181,6 +201,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_InventoryButton = m_Player.FindAction("InventoryButton", throwIfNotFound: true);
         m_Player_MarketButton = m_Player.FindAction("MarketButton", throwIfNotFound: true);
+        m_Player_PickButton = m_Player.FindAction("PickButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -246,6 +267,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_InventoryButton;
     private readonly InputAction m_Player_MarketButton;
+    private readonly InputAction m_Player_PickButton;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -254,6 +276,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @InventoryButton => m_Wrapper.m_Player_InventoryButton;
         public InputAction @MarketButton => m_Wrapper.m_Player_MarketButton;
+        public InputAction @PickButton => m_Wrapper.m_Player_PickButton;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -275,6 +298,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MarketButton.started += instance.OnMarketButton;
             @MarketButton.performed += instance.OnMarketButton;
             @MarketButton.canceled += instance.OnMarketButton;
+            @PickButton.started += instance.OnPickButton;
+            @PickButton.performed += instance.OnPickButton;
+            @PickButton.canceled += instance.OnPickButton;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -291,6 +317,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MarketButton.started -= instance.OnMarketButton;
             @MarketButton.performed -= instance.OnMarketButton;
             @MarketButton.canceled -= instance.OnMarketButton;
+            @PickButton.started -= instance.OnPickButton;
+            @PickButton.performed -= instance.OnPickButton;
+            @PickButton.canceled -= instance.OnPickButton;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -323,5 +352,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnInventoryButton(InputAction.CallbackContext context);
         void OnMarketButton(InputAction.CallbackContext context);
+        void OnPickButton(InputAction.CallbackContext context);
     }
 }

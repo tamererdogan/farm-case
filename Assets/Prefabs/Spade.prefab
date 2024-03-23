@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spade
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1247151900394d541913840f639c2d9f, type: 3}
+      propertyPath: m_TagString
+      value: CollectableItem
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1247151900394d541913840f639c2d9f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
