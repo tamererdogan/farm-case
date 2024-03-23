@@ -61,7 +61,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void InventoryButtonClicked(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        InventoryManager.Instance.ToggleUI();
         if (IsUIOpen())
             UnlockCursor();
         else
@@ -70,7 +70,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void MarketButtonClicked(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        marketUI.SetActive(!marketUI.activeSelf);
+        MarketManager.Instance.ToggleUI();
         if (IsUIOpen())
             UnlockCursor();
         else
@@ -79,7 +79,7 @@ public class FirstPersonController : MonoBehaviour
 
     private bool IsUIOpen()
     {
-        return inventoryUI.activeSelf || marketUI.activeSelf;
+        return InventoryManager.Instance.IsOpen() || MarketManager.Instance.IsOpen();
     }
 
     private void LockCursor()
