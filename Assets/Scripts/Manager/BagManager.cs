@@ -47,7 +47,6 @@ public class BagManager : MonoBehaviour
 
             ItemSO item = DataManager.Instance.GetItem((int)itemIds[i]);
             iconImage.sprite = item.icon;
-            iconImage.enabled = true;
         }
     }
 }

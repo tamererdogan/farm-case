@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8776084974918153175}
   m_Layer: 0
   m_Name: PotatoSeed
-  m_TagString: Untagged
+  m_TagString: CollectableItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -58,7 +58,7 @@ public class InventoryManager : BagManager
 
     public void RemoveItem(int index)
     {
-        itemIds.RemoveAt(index);
+        itemIds[index] = null;
         UpdateDisplay();
     }
 

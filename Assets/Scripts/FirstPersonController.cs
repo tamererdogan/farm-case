@@ -75,14 +75,14 @@ public class FirstPersonController : MonoBehaviour
         float nextAngle = Camera.main.transform.eulerAngles.x + desiredAngle;
         if (nextAngle > 180)
             nextAngle -= 360;
-        if (nextAngle > 30 || nextAngle < -30)
+        if (nextAngle > 50 || nextAngle < -50)
             return;
         Camera.main.transform.rotation *= Quaternion.Euler(desiredAngle, 0, 0);
     }
 
     private void PickButtonClicked(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, clickDistance))
         {
@@ -90,12 +90,25 @@ public class FirstPersonController : MonoBehaviour
                 return;
 
             int collectId = -1;
-            if (hit.collider.name.Contains("Spade"))
+
+            if (hit.collider.name == "Spade(Clone)")
                 collectId = 0;
-            if (hit.collider.name.Contains("Hoe"))
+            if (hit.collider.name == "Hoe(Clone)")
                 collectId = 1;
-            if (hit.collider.name.Contains("Scythe"))
+            if (hit.collider.name == "Scythe(Clone)")
                 collectId = 2;
+            if (hit.collider.name == "BroccoliSeed(Clone)")
+                collectId = 3;
+            if (hit.collider.name == "CarrotSeed(Clone)")
+                collectId = 4;
+            if (hit.collider.name == "PotatoSeed(Clone)")
+                collectId = 5;
+            if (hit.collider.name == "Broccoli(Clone)")
+                collectId = 6;
+            if (hit.collider.name == "Carrot(Clone)")
+                collectId = 7;
+            if (hit.collider.name == "Potato(Clone)")
+                collectId = 8;
 
             if (collectId == -1)
                 return;
