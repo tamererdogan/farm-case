@@ -14,7 +14,24 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
         {
             if (type == "Inventory")
             {
+                int? itemId = InventoryManager.Instance.GetItemId(id);
+                if (itemId == null)
+                    return;
+                ItemSO item = DataManager.Instance.GetItem((int)itemId);
+                if (item == null)
+                    return;
                 InventoryManager.Instance.RemoveItem(id);
+
+                Vector3 playerPosition = FirstPersonController
+                    .Instance
+                    .gameObject
+                    .transform
+                    .position;
+                Vector3 randomOffset = Random.insideUnitSphere * 3f;
+                Vector3 targetPosition = playerPosition + randomOffset;
+                targetPosition.y = 0.5f;
+                Instantiate(item.prefab, targetPosition, Quaternion.Euler(0, 0, 180));
+
                 return;
             }
 

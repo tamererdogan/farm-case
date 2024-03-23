@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 2
   itemName: "T\u0131rpan"
   icon: {fileID: 21300000, guid: 4722f1a79c3fa7548866ff9900f65a41, type: 3}
+  prefab: {fileID: 9100764546785096066, guid: 579a81580591e664492a531d94c47ba6, type: 3}
   buyPrice: 500
   sellPrice: 400
   efficiency: 0

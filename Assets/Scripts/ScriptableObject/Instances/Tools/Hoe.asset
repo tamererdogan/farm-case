@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 1
   itemName: "\xC7apa"
   icon: {fileID: 21300000, guid: 9cebed1933a60d44082862aa22881dd3, type: 3}
+  prefab: {fileID: 2975893523588701139, guid: 75f388df669aee041b659a9d09ab912a, type: 3}
   buyPrice: 250
   sellPrice: 200
   efficiency: 0

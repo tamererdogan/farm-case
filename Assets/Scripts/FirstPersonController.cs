@@ -3,6 +3,22 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class FirstPersonController : MonoBehaviour
 {
+    #region SINGLETON
+    public static FirstPersonController Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+    #endregion SINGLETON
+
+
     [SerializeField]
     private float moveSpeed;
 

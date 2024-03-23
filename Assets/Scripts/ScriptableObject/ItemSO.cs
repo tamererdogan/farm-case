@@ -8,6 +8,8 @@ public class ItemSO : ScriptableObject
 
     public Sprite icon;
 
+    public GameObject prefab;
+
     public float buyPrice;
 
     public float sellPrice;
