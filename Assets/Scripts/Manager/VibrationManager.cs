@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class VibrationManager : MonoBehaviour
@@ -35,18 +34,11 @@ public class VibrationManager : MonoBehaviour
         return isVibrationOn;
     }
 
-    public void Vibrate(float time)
+    public void Vibrate()
     {
         if (!isVibrationOn)
             return;
 
-        StartCoroutine(VibrateCoroutine(time));
-    }
-
-    private IEnumerator VibrateCoroutine(float time)
-    {
-        Handheld.Vibrate();
-        yield return new WaitForSeconds(time);
         Handheld.Vibrate();
     }
 }
