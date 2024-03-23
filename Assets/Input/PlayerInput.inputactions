@@ -22,6 +22,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "InventoryButton",
+                    "type": "Button",
+                    "id": "38b220d0-c325-4b67-b9df-6547e184fed3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MarketButton",
+                    "type": "Button",
+                    "id": "73ad16c9-a1d9-442a-9e0d-f870d5292b76",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -88,6 +106,28 @@
                     "processors": "",
                     "groups": "Keybord&Mouse",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d93d183-b4d8-405b-9bcb-e9b0eb6cd873",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keybord&Mouse",
+                    "action": "InventoryButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae2d4253-38ff-4898-87d0-cde860b0890e",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keybord&Mouse",
+                    "action": "MarketButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

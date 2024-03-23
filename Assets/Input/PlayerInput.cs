@@ -44,6 +44,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""InventoryButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""38b220d0-c325-4b67-b9df-6547e184fed3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MarketButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""73ad16c9-a1d9-442a-9e0d-f870d5292b76"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d93d183-b4d8-405b-9bcb-e9b0eb6cd873"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keybord&Mouse"",
+                    ""action"": ""InventoryButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae2d4253-38ff-4898-87d0-cde860b0890e"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keybord&Mouse"",
+                    ""action"": ""MarketButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -139,6 +179,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_InventoryButton = m_Player.FindAction("InventoryButton", throwIfNotFound: true);
+        m_Player_MarketButton = m_Player.FindAction("MarketButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -202,12 +244,16 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_InventoryButton;
+    private readonly InputAction m_Player_MarketButton;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @InventoryButton => m_Wrapper.m_Player_InventoryButton;
+        public InputAction @MarketButton => m_Wrapper.m_Player_MarketButton;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -223,6 +269,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @InventoryButton.started += instance.OnInventoryButton;
+            @InventoryButton.performed += instance.OnInventoryButton;
+            @InventoryButton.canceled += instance.OnInventoryButton;
+            @MarketButton.started += instance.OnMarketButton;
+            @MarketButton.performed += instance.OnMarketButton;
+            @MarketButton.canceled += instance.OnMarketButton;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -233,6 +285,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @InventoryButton.started -= instance.OnInventoryButton;
+            @InventoryButton.performed -= instance.OnInventoryButton;
+            @InventoryButton.canceled -= instance.OnInventoryButton;
+            @MarketButton.started -= instance.OnMarketButton;
+            @MarketButton.performed -= instance.OnMarketButton;
+            @MarketButton.canceled -= instance.OnMarketButton;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -263,5 +321,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnInventoryButton(InputAction.CallbackContext context);
+        void OnMarketButton(InputAction.CallbackContext context);
     }
 }
