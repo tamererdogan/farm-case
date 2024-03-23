@@ -1,7 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
+public class Slot
+    : MonoBehaviour,
+        IDragHandler,
+        IEndDragHandler,
+        IPointerEnterHandler,
+        IPointerExitHandler
 {
     public int id;
     public string type;
@@ -78,5 +83,36 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
             InventoryManager.Instance.AddItem(item.id);
             return;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // string name = eventData.pointerEnter?.name;
+        // string[] nameParts = name.Split("-");
+        // int pointedSlotId = nameParts.Length >= 2 ? int.Parse(nameParts[0]) : -1;
+        // string pointedSlotType = nameParts.Length >= 2 ? nameParts[1] : "";
+
+        // if (pointedSlotId == -1 || pointedSlotType == "")
+        //     return;
+
+        // Item pointedItem = null;
+        // if (pointedSlotType == "InventorySlot")
+        // {
+        //     pointedItem = InventoryManager.Instance.GetItem(pointedSlotId);
+        // }
+        // else if (pointedSlotType == "MarketSlot")
+        // {
+        //     pointedItem = MarketManager.Instance.GetItem(pointedSlotId);
+        // }
+
+        // if (pointedItem == null)
+        //     return;
+
+        // TooltipManager.Instance.ShowTooltip(pointedItem);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // TooltipManager.Instance.HideTooltip();
     }
 }

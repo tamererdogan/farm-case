@@ -18,7 +18,6 @@ public class FirstPersonController : MonoBehaviour
     }
     #endregion SINGLETON
 
-
     [SerializeField]
     private float moveSpeed;
 
