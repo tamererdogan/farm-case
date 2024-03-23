@@ -7,6 +7,9 @@ public class BagManager : MonoBehaviour
     [SerializeField]
     private GameObject bagUI;
 
+    [SerializeField]
+    private Sprite slotPlaceHolder;
+
     protected List<int?> itemIds;
 
     protected virtual void Start()
@@ -29,15 +32,16 @@ public class BagManager : MonoBehaviour
     public void UpdateDisplay()
     {
         Slot[] slots = bagUI.GetComponentsInChildren<Slot>();
+
         for (int i = 0; i < itemIds.Count; i++)
         {
-            Image iconImage = slots[i].GetComponentsInChildren<Image>()[1];
+            Image iconImage = slots[i].GetComponent<Image>();
             if (iconImage == null)
                 continue;
 
             if (itemIds[i] == null)
             {
-                iconImage.enabled = false;
+                iconImage.sprite = slotPlaceHolder;
                 continue;
             }
 

@@ -14,7 +14,7 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
         {
             if (type == "Inventory")
             {
-                Debug.Log(id + " slotundaki itemi yere at.");
+                InventoryManager.Instance.RemoveItem(id);
                 return;
             }
 
@@ -22,25 +22,43 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
         }
 
         Slot droppedSlot;
-        eventData.pointerEnter.TryGetComponent<Slot>(out droppedSlot);
+        eventData.pointerEnter.TryGetComponent(out droppedSlot);
         if (droppedSlot == null)
             return;
 
         if (type == "Inventory" && droppedSlot.type == "Inventory")
         {
-            Debug.Log(id + " slotundaki itemi " + droppedSlot.id + " slotuyla yer değiştir.");
+            InventoryManager.Instance.ReplaceItem(id, droppedSlot.id);
             return;
         }
 
         if (type == "Inventory" && droppedSlot.type == "Market")
         {
-            Debug.Log(id + " slotundaki itemi markete sat.");
+            int? itemId = InventoryManager.Instance.GetItemId(id);
+            if (itemId == null)
+                return;
+            ItemSO item = DataManager.Instance.GetItem((int)itemId);
+            if (item == null)
+                return;
+            InventoryManager.Instance.AddMoney(item.sellPrice);
+            InventoryManager.Instance.RemoveItem(id);
             return;
         }
 
         if (type == "Market" && droppedSlot.type == "Inventory")
         {
-            Debug.Log(id + " slotundaki itemi satın al.");
+            int? itemId = MarketManager.Instance.GetItemId(id);
+            if (itemId == null)
+                return;
+            ItemSO item = DataManager.Instance.GetItem((int)itemId);
+            if (item == null)
+                return;
+
+            if (!InventoryManager.Instance.CheckMoney(item.buyPrice))
+                return;
+
+            InventoryManager.Instance.SubMoney(item.buyPrice);
+            InventoryManager.Instance.AddItem(item.id);
             return;
         }
     }

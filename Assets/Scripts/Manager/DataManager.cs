@@ -1,3 +1,5 @@
+#nullable enable
+
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -20,7 +22,7 @@ public class DataManager : MonoBehaviour
     [SerializeField]
     private ItemSO[] items;
 
-    public ItemSO GetItem(int id)
+    public ItemSO? GetItem(int id)
     {
         foreach (ItemSO item in items)
         {

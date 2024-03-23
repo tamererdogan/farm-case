@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 0
   itemName: "K\xFCrek"
   icon: {fileID: 21300000, guid: a5a97e2147d67534185ba9a58e3af8f5, type: 3}
-  buyPrice: 0
-  sellPrice: 0
+  buyPrice: 150
+  sellPrice: 100
   efficiency: 0
   growthBoostTime: 0

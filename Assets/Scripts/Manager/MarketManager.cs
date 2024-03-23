@@ -23,4 +23,9 @@ public class MarketManager : BagManager
         itemIds[2] = 2;
         UpdateDisplay();
     }
+
+    public int? GetItemId(int index)
+    {
+        return itemIds[index];
+    }
 }

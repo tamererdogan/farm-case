@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 1
   itemName: "\xC7apa"
   icon: {fileID: 21300000, guid: 9cebed1933a60d44082862aa22881dd3, type: 3}
-  buyPrice: 0
-  sellPrice: 0
+  buyPrice: 250
+  sellPrice: 200
   efficiency: 0
   growthBoostTime: 0
