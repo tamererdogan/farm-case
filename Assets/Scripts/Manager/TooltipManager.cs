@@ -31,13 +31,18 @@ public class TooltipManager : MonoBehaviour
     public void ShowToolTooltip(ToolSO item)
     {
         ShowTooltip(toolTooltipUI, item);
-        Transform efficiencyTextTransform = toolTooltipUI.transform.Find("EfficiencyText");
-        efficiencyTextTransform.GetComponent<TMP_Text>().text = "Verim: " + item.efficiency;
-        Transform growthBoostTimeTextTransform = toolTooltipUI.transform.Find(
-            "GrowthBoostTimeText"
+
+        Transform plantTimeBoostTextTransform = toolTooltipUI.transform.Find(
+            "Grid/PlantTimeBoostText"
         );
-        growthBoostTimeTextTransform.GetComponent<TMP_Text>().text =
-            "Y. Hızı: " + item.growthBoostTime;
+        plantTimeBoostTextTransform.GetComponent<TMP_Text>().text =
+            "Ekim Süresi (Boost): -" + item.plantTimeBoost + " sn";
+
+        Transform harvestTimeBoostTextTransform = toolTooltipUI.transform.Find(
+            "Grid/HarvestTimeBoostText"
+        );
+        harvestTimeBoostTextTransform.GetComponent<TMP_Text>().text =
+            "Hasat Süresi (Boost): -" + item.harvestTimeBoost + " sn";
 
         toolTooltipUI.SetActive(true);
     }
@@ -45,11 +50,19 @@ public class TooltipManager : MonoBehaviour
     public void ShowSeedTooltip(SeedSO item)
     {
         ShowTooltip(seedTooltipUI, item);
-        Transform harvestCountTextTransform = seedTooltipUI.transform.Find("HarvestCountText");
-        harvestCountTextTransform.GetComponent<TMP_Text>().text =
-            "Hasat Adedi: " + item.harvestCount;
-        Transform growthTimeTextTransform = seedTooltipUI.transform.Find("GrowthTimeText");
-        growthTimeTextTransform.GetComponent<TMP_Text>().text = "Y. Süresi: " + item.growthTime;
+
+        Transform plantTimeTextTransform = seedTooltipUI.transform.Find("Grid/PlantTimeText");
+        plantTimeTextTransform.GetComponent<TMP_Text>().text =
+            "Ekim Süresi: " + item.plantTime + " sn";
+
+        Transform growthTimeTextTransform = seedTooltipUI.transform.Find("Grid/GrowthTimeText");
+        growthTimeTextTransform.GetComponent<TMP_Text>().text =
+            "Yetişme Süresi: " + item.growthTime + " sn";
+
+        Transform harvestTimeTextTransform = seedTooltipUI.transform.Find("Grid/HarvestTimeText");
+        harvestTimeTextTransform.GetComponent<TMP_Text>().text =
+            "Hasat Süresi: " + item.harvestTime + " sn";
+
         seedTooltipUI.SetActive(true);
     }
 
@@ -67,10 +80,10 @@ public class TooltipManager : MonoBehaviour
         itemNameTransform.GetComponent<TMP_Text>().text = item.itemName;
         if (buyPriceOpen)
         {
-            Transform buyPriceTextTransform = container.transform.Find("BuyPriceText");
+            Transform buyPriceTextTransform = container.transform.Find("Grid/BuyPriceText");
             buyPriceTextTransform.GetComponent<TMP_Text>().text = "Alış Fiyatı: " + item.buyPrice;
         }
-        Transform sellPriceTextTransform = container.transform.Find("SellPriceText");
+        Transform sellPriceTextTransform = container.transform.Find("Grid/SellPriceText");
         sellPriceTextTransform.GetComponent<TMP_Text>().text = "Satış Fiyatı: " + item.sellPrice;
     }
 

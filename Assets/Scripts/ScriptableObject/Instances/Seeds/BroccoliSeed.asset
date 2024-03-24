@@ -18,8 +18,9 @@ MonoBehaviour:
   prefab: {fileID: 1652735258122597549, guid: e3f11ec095ab5e74a9cecdb20ac51919, type: 3}
   buyPrice: 100
   sellPrice: 80
-  harvestCount: 5
+  plantTime: 5
   growthTime: 20
+  harvestTime: 7
   smallPrefab: {fileID: 9033432368376901114, guid: 23e4853a631d6364f9844cdc73212a06, type: 3}
   middlePrefab: {fileID: 268563074594498493, guid: 2ccc4f134f93b234bbf6cb8e006cb450, type: 3}
   largePrefab: {fileID: 1032950481046057236, guid: 1186f1eb181be5047badf7dc03aa8a4f, type: 3}

@@ -3,9 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Item / New Seed")]
 public class SeedSO : ItemSO
 {
-    public int harvestCount;
+    public float plantTime;
 
     public float growthTime;
+
+    public float harvestTime;
 
     public GameObject smallPrefab;
 

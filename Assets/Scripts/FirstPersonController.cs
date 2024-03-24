@@ -104,6 +104,36 @@ public class FirstPersonController : MonoBehaviour
         //Empty state
         if (plantField.GetState() == 0)
         {
+            int? toolItemId = EquipManager.Instance.GetToolItemId();
+            if (toolItemId == null)
+            {
+                Debug.Log("Ekim yapmak için alet gereklidir.");
+                return false;
+            }
+
+            ItemSO toolItem = DataManager.Instance.GetItem((int)toolItemId);
+            if (toolItem == null)
+            {
+                Debug.Log("Alet bulunamadı.");
+                return false;
+            }
+
+            int? seedItemId = EquipManager.Instance.GetSeedItemId();
+            if (seedItemId == null)
+            {
+                Debug.Log("Ekim yapmak için tohum gereklidir.");
+                return false;
+            }
+
+            ItemSO seedItem = DataManager.Instance.GetItem((int)seedItemId);
+            if (seedItem == null)
+            {
+                Debug.Log("Tohum bulunamadı.");
+                return false;
+            }
+
+            EquipManager.Instance.EquipSeed(null);
+            plantField.Plant((SeedSO)seedItem, ((ToolSO)toolItem).plantTimeBoost);
         }
 
         return true;

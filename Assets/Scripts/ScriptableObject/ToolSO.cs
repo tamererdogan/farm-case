@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Item / New Tool")]
 public class ToolSO : ItemSO
 {
-    public int efficiency;
+    public float harvestTimeBoost;
 
-    public float growthBoostTime;
+    public float plantTimeBoost;
 }
