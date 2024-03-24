@@ -106,7 +106,6 @@ public class Slot
         if (item == null)
             return;
 
-        Debug.Log("type: " + item.GetType());
         switch (item.GetType().FullName)
         {
             case "ToolSO":
