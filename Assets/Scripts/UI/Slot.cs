@@ -87,32 +87,44 @@ public class Slot
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // string name = eventData.pointerEnter?.name;
-        // string[] nameParts = name.Split("-");
-        // int pointedSlotId = nameParts.Length >= 2 ? int.Parse(nameParts[0]) : -1;
-        // string pointedSlotType = nameParts.Length >= 2 ? nameParts[1] : "";
+        Slot pointerSlot;
+        eventData.pointerEnter.TryGetComponent(out pointerSlot);
+        if (pointerSlot == null)
+            return;
 
-        // if (pointedSlotId == -1 || pointedSlotType == "")
-        //     return;
+        int? itemId = null;
+        if (pointerSlot.type == "Inventory")
+            itemId = InventoryManager.Instance.GetItemId(id);
 
-        // Item pointedItem = null;
-        // if (pointedSlotType == "InventorySlot")
-        // {
-        //     pointedItem = InventoryManager.Instance.GetItem(pointedSlotId);
-        // }
-        // else if (pointedSlotType == "MarketSlot")
-        // {
-        //     pointedItem = MarketManager.Instance.GetItem(pointedSlotId);
-        // }
+        if (pointerSlot.type == "Market")
+            itemId = MarketManager.Instance.GetItemId(id);
 
-        // if (pointedItem == null)
-        //     return;
+        if (itemId == null)
+            return;
 
-        // TooltipManager.Instance.ShowTooltip(pointedItem);
+        ItemSO item = DataManager.Instance.GetItem((int)itemId);
+        if (item == null)
+            return;
+
+        Debug.Log("type: " + item.GetType());
+        switch (item.GetType().FullName)
+        {
+            case "ToolSO":
+                TooltipManager.Instance.ShowToolTooltip((ToolSO)item);
+                break;
+            case "SeedSO":
+                TooltipManager.Instance.ShowSeedTooltip((SeedSO)item);
+                break;
+            case "CropSO":
+                TooltipManager.Instance.ShowCropTooltip((CropSO)item);
+                break;
+            default:
+                break;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        // TooltipManager.Instance.HideTooltip();
+        TooltipManager.Instance.HideTooltip();
     }
 }

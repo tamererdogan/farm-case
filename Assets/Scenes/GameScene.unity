@@ -3294,7 +3294,7 @@ GameObject:
   - component: {fileID: 373475096}
   - component: {fileID: 373475095}
   m_Layer: 5
-  m_Name: EffiencyText
+  m_Name: EfficiencyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4028,6 +4028,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 571de0c1db5e79149a3a9fee478476bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toolTooltipUI: {fileID: 995681202}
+  seedTooltipUI: {fileID: 661769940}
+  cropTooltipUI: {fileID: 1487707302}
 --- !u!1 &468722620
 GameObject:
   m_ObjectHideFlags: 0
@@ -5840,7 +5843,7 @@ GameObject:
   - component: {fileID: 661769943}
   - component: {fileID: 661769942}
   m_Layer: 5
-  m_Name: SeedTooltip
+  m_Name: SeedTooltipUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6354,7 +6357,7 @@ GameObject:
   - component: {fileID: 704446553}
   - component: {fileID: 704446552}
   m_Layer: 5
-  m_Name: GrowthBostTimeText
+  m_Name: GrowthBoostTimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8716,7 +8719,7 @@ GameObject:
   - component: {fileID: 995681205}
   - component: {fileID: 995681204}
   m_Layer: 5
-  m_Name: ToolTooltip
+  m_Name: ToolTooltipUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12722,7 +12725,7 @@ GameObject:
   - component: {fileID: 1487707305}
   - component: {fileID: 1487707304}
   m_Layer: 5
-  m_Name: CropTooltip
+  m_Name: CropTooltipUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
