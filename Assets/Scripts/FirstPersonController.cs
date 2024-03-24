@@ -102,14 +102,14 @@ public class FirstPersonController : MonoBehaviour
             int? toolItemId = EquipManager.Instance.GetToolItemId();
             if (toolItemId == null)
             {
-                Debug.Log("Ekim yapmak için alet gereklidir.");
+                ConsoleManager.Instance.AddMessage("Ekim yapmak için alet gereklidir.", Color.red);
                 return false;
             }
 
             int? seedItemId = EquipManager.Instance.GetSeedItemId();
             if (seedItemId == null)
             {
-                Debug.Log("Ekim yapmak için tohum gereklidir.");
+                ConsoleManager.Instance.AddMessage("Ekim yapmak için tohum gereklidir.", Color.red);
                 return false;
             }
 
@@ -127,7 +127,7 @@ public class FirstPersonController : MonoBehaviour
             int? toolItemId = EquipManager.Instance.GetToolItemId();
             if (toolItemId == null)
             {
-                Debug.Log("Hasat için alet gereklidir.");
+                ConsoleManager.Instance.AddMessage("Hasat için alet gereklidir.", Color.red);
                 return false;
             }
 
@@ -137,7 +137,7 @@ public class FirstPersonController : MonoBehaviour
             return true;
         }
 
-        Debug.Log(plantField.GetInfo());
+        ConsoleManager.Instance.AddMessage(plantField.GetInfo(), Color.green);
 
         return true;
     }

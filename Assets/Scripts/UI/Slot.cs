@@ -139,7 +139,10 @@ public class Slot
                 return;
 
             if (!InventoryManager.Instance.CheckMoney(item.buyPrice))
+            {
+                ConsoleManager.Instance.AddMessage("Paranız yetersiz.", Color.red);
                 return;
+            }
 
             InventoryManager.Instance.SubMoney(item.buyPrice);
             InventoryManager.Instance.AddItem(item.id);
