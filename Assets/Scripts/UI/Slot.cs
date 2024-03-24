@@ -48,6 +48,68 @@ public class Slot
         if (droppedSlot == null)
             return;
 
+        if (type == "Inventory" && droppedSlot.type == "ToolEquip")
+        {
+            int? itemId = InventoryManager.Instance.GetItemId(id);
+            ItemSO item = DataManager.Instance.GetItem((int)itemId);
+            if (item.GetType().FullName == "ToolSO")
+            {
+                int? toolItemId = EquipManager.Instance.GetToolItemId();
+                if (toolItemId != null)
+                {
+                    InventoryManager.Instance.AddItem((int)toolItemId);
+                }
+
+                EquipManager.Instance.EquipTool(itemId);
+                InventoryManager.Instance.RemoveItem(id);
+            }
+
+            return;
+        }
+
+        if (type == "ToolEquip" && droppedSlot.type == "Inventory")
+        {
+            int? itemId = EquipManager.Instance.GetToolItemId();
+            if (itemId == null)
+                return;
+
+            EquipManager.Instance.EquipTool(null);
+            InventoryManager.Instance.AddItem((int)itemId);
+
+            return;
+        }
+
+        if (type == "Inventory" && droppedSlot.type == "SeedEquip")
+        {
+            int? itemId = InventoryManager.Instance.GetItemId(id);
+            ItemSO item = DataManager.Instance.GetItem((int)itemId);
+            if (item.GetType().FullName == "SeedSO")
+            {
+                int? seedItemId = EquipManager.Instance.GetSeedItemId();
+                if (seedItemId != null)
+                {
+                    InventoryManager.Instance.AddItem((int)seedItemId);
+                }
+
+                EquipManager.Instance.EquipSeed(itemId);
+                InventoryManager.Instance.RemoveItem(id);
+            }
+
+            return;
+        }
+
+        if (type == "SeedEquip" && droppedSlot.type == "Inventory")
+        {
+            int? itemId = EquipManager.Instance.GetSeedItemId();
+            if (itemId == null)
+                return;
+
+            EquipManager.Instance.EquipSeed(null);
+            InventoryManager.Instance.AddItem((int)itemId);
+
+            return;
+        }
+
         if (type == "Inventory" && droppedSlot.type == "Inventory")
         {
             InventoryManager.Instance.ReplaceItem(id, droppedSlot.id);
