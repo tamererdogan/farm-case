@@ -85,36 +85,62 @@ public class FirstPersonController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, clickDistance))
         {
-            if (hit.collider.tag != "CollectableItem")
+            if (CollectItemCheck(hit))
                 return;
-
-            int collectId = -1;
-
-            if (hit.collider.name == "Spade(Clone)")
-                collectId = 0;
-            if (hit.collider.name == "Hoe(Clone)")
-                collectId = 1;
-            if (hit.collider.name == "Scythe(Clone)")
-                collectId = 2;
-            if (hit.collider.name == "BroccoliSeed(Clone)")
-                collectId = 3;
-            if (hit.collider.name == "CarrotSeed(Clone)")
-                collectId = 4;
-            if (hit.collider.name == "PotatoSeed(Clone)")
-                collectId = 5;
-            if (hit.collider.name == "Broccoli(Clone)")
-                collectId = 6;
-            if (hit.collider.name == "Carrot(Clone)")
-                collectId = 7;
-            if (hit.collider.name == "Potato(Clone)")
-                collectId = 8;
-
-            if (collectId == -1)
+            if (GardenActionCheck(hit))
                 return;
-
-            InventoryManager.Instance.AddItem(collectId);
-            Destroy(hit.collider.gameObject);
         }
+    }
+
+    private bool GardenActionCheck(RaycastHit hit)
+    {
+        if (hit.collider.tag != "PlantField")
+            return false;
+
+        PlantField plantField = hit.collider.gameObject.GetComponent<PlantField>();
+        if (plantField == null)
+            return false;
+
+        //Empty state
+        if (plantField.GetState() == 0)
+        {
+        }
+
+        return true;
+    }
+
+    private bool CollectItemCheck(RaycastHit hit)
+    {
+        if (hit.collider.tag != "CollectableItem")
+            return false;
+
+        int collectId = -1;
+
+        if (hit.collider.name == "Spade(Clone)")
+            collectId = 0;
+        if (hit.collider.name == "Hoe(Clone)")
+            collectId = 1;
+        if (hit.collider.name == "Scythe(Clone)")
+            collectId = 2;
+        if (hit.collider.name == "BroccoliSeed(Clone)")
+            collectId = 3;
+        if (hit.collider.name == "CarrotSeed(Clone)")
+            collectId = 4;
+        if (hit.collider.name == "PotatoSeed(Clone)")
+            collectId = 5;
+        if (hit.collider.name == "Broccoli(Clone)")
+            collectId = 6;
+        if (hit.collider.name == "Carrot(Clone)")
+            collectId = 7;
+        if (hit.collider.name == "Potato(Clone)")
+            collectId = 8;
+
+        if (collectId == -1)
+            return false;
+
+        InventoryManager.Instance.AddItem(collectId);
+        Destroy(hit.collider.gameObject);
+        return true;
     }
 
     private void InventoryButtonClicked(UnityEngine.InputSystem.InputAction.CallbackContext context)
