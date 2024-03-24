@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "EscapeButton",
+                    "type": "Button",
+                    "id": "2b9965e9-a92c-4aac-896b-5fca0a0ff15c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -146,8 +155,19 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keybord&Mouse",
                     "action": "PickButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dbccf485-2aec-4b06-bb42-8e7cbfb8a14a",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keybord&Mouse",
+                    "action": "EscapeButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

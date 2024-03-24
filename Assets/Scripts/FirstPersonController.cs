@@ -27,12 +27,6 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField]
     private float yRotationSensivity;
 
-    [SerializeField]
-    private GameObject inventoryUI;
-
-    [SerializeField]
-    private GameObject marketUI;
-
     private PlayerInput playerInput;
 
     private Rigidbody rigidBody;
@@ -50,9 +44,11 @@ public class FirstPersonController : MonoBehaviour
         playerInput.Player.InventoryButton.Enable();
         playerInput.Player.MarketButton.Enable();
         playerInput.Player.PickButton.Enable();
+        playerInput.Player.EscapeButton.Enable();
         playerInput.Player.InventoryButton.performed += InventoryButtonClicked;
         playerInput.Player.MarketButton.performed += MarketButtonClicked;
         playerInput.Player.PickButton.performed += PickButtonClicked;
+        playerInput.Player.EscapeButton.performed += EscapeButtonClicked;
     }
 
     void Update()
@@ -196,6 +192,25 @@ public class FirstPersonController : MonoBehaviour
             UnlockCursor();
         else
             LockCursor();
+    }
+
+    private void EscapeButtonClicked(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (MarketManager.Instance.IsOpen())
+        {
+            MarketManager.Instance.ToggleUI();
+            if (!IsUIOpen())
+                LockCursor();
+            return;
+        }
+
+        if (InventoryManager.Instance.IsOpen())
+        {
+            InventoryManager.Instance.ToggleUI();
+            if (!IsUIOpen())
+                LockCursor();
+            return;
+        }
     }
 
     private bool IsUIOpen()

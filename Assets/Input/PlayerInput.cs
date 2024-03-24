@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EscapeButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b9965e9-a92c-4aac-896b-5fca0a0ff15c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -168,8 +177,19 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keybord&Mouse"",
                     ""action"": ""PickButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dbccf485-2aec-4b06-bb42-8e7cbfb8a14a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keybord&Mouse"",
+                    ""action"": ""EscapeButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -202,6 +222,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_InventoryButton = m_Player.FindAction("InventoryButton", throwIfNotFound: true);
         m_Player_MarketButton = m_Player.FindAction("MarketButton", throwIfNotFound: true);
         m_Player_PickButton = m_Player.FindAction("PickButton", throwIfNotFound: true);
+        m_Player_EscapeButton = m_Player.FindAction("EscapeButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -268,6 +289,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_InventoryButton;
     private readonly InputAction m_Player_MarketButton;
     private readonly InputAction m_Player_PickButton;
+    private readonly InputAction m_Player_EscapeButton;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -277,6 +299,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @InventoryButton => m_Wrapper.m_Player_InventoryButton;
         public InputAction @MarketButton => m_Wrapper.m_Player_MarketButton;
         public InputAction @PickButton => m_Wrapper.m_Player_PickButton;
+        public InputAction @EscapeButton => m_Wrapper.m_Player_EscapeButton;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -301,6 +324,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @PickButton.started += instance.OnPickButton;
             @PickButton.performed += instance.OnPickButton;
             @PickButton.canceled += instance.OnPickButton;
+            @EscapeButton.started += instance.OnEscapeButton;
+            @EscapeButton.performed += instance.OnEscapeButton;
+            @EscapeButton.canceled += instance.OnEscapeButton;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -320,6 +346,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @PickButton.started -= instance.OnPickButton;
             @PickButton.performed -= instance.OnPickButton;
             @PickButton.canceled -= instance.OnPickButton;
+            @EscapeButton.started -= instance.OnEscapeButton;
+            @EscapeButton.performed -= instance.OnEscapeButton;
+            @EscapeButton.canceled -= instance.OnEscapeButton;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -353,5 +382,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnInventoryButton(InputAction.CallbackContext context);
         void OnMarketButton(InputAction.CallbackContext context);
         void OnPickButton(InputAction.CallbackContext context);
+        void OnEscapeButton(InputAction.CallbackContext context);
     }
 }
