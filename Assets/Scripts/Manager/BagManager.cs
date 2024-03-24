@@ -12,10 +12,10 @@ public class BagManager : MonoBehaviour
 
     protected List<int?> itemIds;
 
-    protected virtual void Start()
+    public void Init(int itemCount)
     {
         itemIds = new List<int?>();
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i < itemCount; i++)
             itemIds.Add(null);
     }
 

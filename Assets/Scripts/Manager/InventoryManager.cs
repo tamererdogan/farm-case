@@ -23,9 +23,9 @@ public class InventoryManager : BagManager
 
     public TMP_Text moneyUI;
 
-    protected override void Start()
+    void Start()
     {
-        base.Start();
+        Init(16);
         UpdateMoneyDisplay();
         UpdateDisplay();
     }

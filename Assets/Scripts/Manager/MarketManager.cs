@@ -15,9 +15,9 @@ public class MarketManager : BagManager
     }
     #endregion SINGLETON
 
-    protected override void Start()
+    void Start()
     {
-        base.Start();
+        Init(16);
         itemIds[0] = 0;
         itemIds[1] = 1;
         itemIds[2] = 2;
