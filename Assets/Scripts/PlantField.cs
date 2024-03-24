@@ -37,6 +37,33 @@ public class PlantField : MonoBehaviour
         return state;
     }
 
+    public string GetInfo()
+    {
+        if (state == 1)
+        {
+            return "Ekiliyor, kalan süre: "
+                + (int)(seedSO.plantTime - plantTimeBoost - elapsedTime)
+                + " sn";
+        }
+
+        if (state == 2)
+            return "Orta boy olmak için büyüyor, kalan süre: "
+                + (int)((seedSO.growthTime / 2) - elapsedTime)
+                + " sn";
+
+        if (state == 3)
+            return "Büyük boy olmak için büyüyor, kalan süre: "
+                + (int)((seedSO.growthTime / 2) - elapsedTime)
+                + " sn";
+
+        if (state == 5)
+            return "Hasat ediliyor, kalan süre: "
+                + (int)(seedSO.harvestTime - harvestTimeBoost - elapsedTime)
+                + " sn";
+
+        return "";
+    }
+
     public void Plant(SeedSO seedSO, float plantTimeBoost)
     {
         this.seedSO = seedSO;

@@ -141,6 +141,8 @@ public class FirstPersonController : MonoBehaviour
             return true;
         }
 
+        Debug.Log(plantField.GetInfo());
+
         return true;
     }
 
