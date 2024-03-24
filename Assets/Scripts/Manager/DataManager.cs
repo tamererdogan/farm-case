@@ -1,5 +1,6 @@
 #nullable enable
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -33,5 +34,23 @@ public class DataManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public string GetItemName(int id)
+    {
+        ItemSO? item = GetItem(id);
+        return item == null ? "" : item.itemName;
+    }
+
+    public int[] GetItemWithMaxLevelFilter(int maxLevel)
+    {
+        List<int> itemIds = new List<int>();
+        foreach (ItemSO item in items)
+        {
+            if (item.level <= maxLevel)
+                itemIds.Add(item.id);
+        }
+
+        return itemIds.ToArray();
     }
 }

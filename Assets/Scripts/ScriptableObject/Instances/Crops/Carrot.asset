@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   id: 7
+  level: 2
   itemName: "Havu\xE7"
   icon: {fileID: 21300000, guid: bb23c341d2206204e96ac4017490b210, type: 3}
   prefab: {fileID: 6350940039468293592, guid: b8374fbfcdb567243a483ad4a175d288, type: 3}

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Potato
   m_EditorClassIdentifier: 
   id: 8
+  level: 3
   itemName: Patates
   icon: {fileID: 21300000, guid: 34f1c5b706ee1094e8a9ea88b5c7202b, type: 3}
   prefab: {fileID: 8197234356783598446, guid: 2f4a41274bac83d43a9c3f022699683a, type: 3}

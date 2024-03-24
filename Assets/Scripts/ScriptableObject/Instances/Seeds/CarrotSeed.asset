@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CarrotSeed
   m_EditorClassIdentifier: 
   id: 4
+  level: 2
   itemName: "Havu\xE7 Tohumu"
   icon: {fileID: 21300000, guid: 90ccb1e012200774cb9c83f122a2467e, type: 3}
   prefab: {fileID: 6867655312544040705, guid: 85119fa764c5be1469bea181357d53df, type: 3}

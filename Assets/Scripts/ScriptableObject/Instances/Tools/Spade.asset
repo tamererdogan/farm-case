@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Spade
   m_EditorClassIdentifier: 
   id: 0
+  level: 1
   itemName: "K\xFCrek"
   icon: {fileID: 21300000, guid: a5a97e2147d67534185ba9a58e3af8f5, type: 3}
   prefab: {fileID: 1006088074750852335, guid: 133466f5c57e34f44a34a2808b6d8fbc, type: 3}

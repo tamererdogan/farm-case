@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Broccoli
   m_EditorClassIdentifier: 
   id: 6
+  level: 1
   itemName: Brokoli
   icon: {fileID: 21300000, guid: 74109a5540fed3246bb10d4990944651, type: 3}
   prefab: {fileID: 975353467519307478, guid: 0d9d664faf18ef24d9574df1d2e06fac, type: 3}

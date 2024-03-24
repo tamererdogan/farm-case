@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PotatoSeed
   m_EditorClassIdentifier: 
   id: 5
+  level: 3
   itemName: Patates Tohumu
   icon: {fileID: 21300000, guid: 87aca7972ecbc944f88e351cf0d34344, type: 3}
   prefab: {fileID: 7284732273271940028, guid: 15ff8cad0b6b7d94996c97d1ce360c63, type: 3}

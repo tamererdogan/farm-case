@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BroccoliSeed
   m_EditorClassIdentifier: 
   id: 3
+  level: 1
   itemName: Brokoli Tohumu
   icon: {fileID: 21300000, guid: 3a73e48592b078e45a86538a4192979c, type: 3}
   prefab: {fileID: 1652735258122597549, guid: e3f11ec095ab5e74a9cecdb20ac51919, type: 3}
