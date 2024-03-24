@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlantField : MonoBehaviour
 {
+    [SerializeField]
+    private int level = 1;
+
     private int state;
 
     private float elapsedTime = 0f;
@@ -160,5 +163,10 @@ public class PlantField : MonoBehaviour
         harvestTimeBoost = 0f;
         Destroy(currentObject);
         fxObject.SetActive(false);
+    }
+
+    public int GetLevel()
+    {
+        return level;
     }
 }

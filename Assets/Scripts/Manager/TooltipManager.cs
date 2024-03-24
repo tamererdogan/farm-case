@@ -76,15 +76,21 @@ public class TooltipManager : MonoBehaviour
     {
         Transform itemIconTransform = container.transform.Find("ItemIcon");
         itemIconTransform.GetComponent<Image>().sprite = item.icon;
+
         Transform itemNameTransform = container.transform.Find("ItemName");
         itemNameTransform.GetComponent<TMP_Text>().text = item.itemName;
+
         if (buyPriceOpen)
         {
             Transform buyPriceTextTransform = container.transform.Find("Grid/BuyPriceText");
             buyPriceTextTransform.GetComponent<TMP_Text>().text = "Alış Fiyatı: " + item.buyPrice;
         }
+
         Transform sellPriceTextTransform = container.transform.Find("Grid/SellPriceText");
         sellPriceTextTransform.GetComponent<TMP_Text>().text = "Satış Fiyatı: " + item.sellPrice;
+
+        Transform levelTextTransform = container.transform.Find("Grid/LevelText");
+        levelTextTransform.GetComponent<TMP_Text>().text = "Level: " + item.level;
     }
 
     public void HideTooltip()

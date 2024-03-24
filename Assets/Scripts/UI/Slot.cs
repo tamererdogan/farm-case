@@ -138,6 +138,12 @@ public class Slot
             if (item == null)
                 return;
 
+            if (item.level > LevelManager.Instance.GetLevel())
+            {
+                ConsoleManager.Instance.AddMessage("Leveliniz yetersiz.", Color.red);
+                return;
+            }
+
             if (!InventoryManager.Instance.CheckMoney(item.buyPrice))
             {
                 ConsoleManager.Instance.AddMessage("Paranız yetersiz.", Color.red);

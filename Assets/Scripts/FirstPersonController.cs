@@ -97,6 +97,15 @@ public class FirstPersonController : MonoBehaviour
         if (plantField == null)
             return false;
 
+        if (plantField.GetLevel() > LevelManager.Instance.GetLevel())
+        {
+            ConsoleManager.Instance.AddMessage(
+                "Ekim yapmak için leveliniz " + plantField.GetLevel() + " olmalıdır.",
+                Color.red
+            );
+            return false;
+        }
+
         if (plantField.GetState() == 0)
         {
             int? toolItemId = EquipManager.Instance.GetToolItemId();
