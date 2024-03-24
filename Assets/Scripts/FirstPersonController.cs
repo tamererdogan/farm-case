@@ -87,12 +87,12 @@ public class FirstPersonController : MonoBehaviour
         {
             if (CollectItemCheck(hit))
                 return;
-            if (GardenActionCheck(hit))
+            if (PlantActionCheck(hit))
                 return;
         }
     }
 
-    private bool GardenActionCheck(RaycastHit hit)
+    private bool PlantActionCheck(RaycastHit hit)
     {
         if (hit.collider.tag != "PlantField")
             return false;
@@ -101,20 +101,12 @@ public class FirstPersonController : MonoBehaviour
         if (plantField == null)
             return false;
 
-        //Empty state
         if (plantField.GetState() == 0)
         {
             int? toolItemId = EquipManager.Instance.GetToolItemId();
             if (toolItemId == null)
             {
                 Debug.Log("Ekim yapmak için alet gereklidir.");
-                return false;
-            }
-
-            ItemSO toolItem = DataManager.Instance.GetItem((int)toolItemId);
-            if (toolItem == null)
-            {
-                Debug.Log("Alet bulunamadı.");
                 return false;
             }
 
@@ -125,15 +117,28 @@ public class FirstPersonController : MonoBehaviour
                 return false;
             }
 
+            ItemSO toolItem = DataManager.Instance.GetItem((int)toolItemId);
             ItemSO seedItem = DataManager.Instance.GetItem((int)seedItemId);
-            if (seedItem == null)
+
+            plantField.Plant((SeedSO)seedItem, ((ToolSO)toolItem).plantTimeBoost);
+            EquipManager.Instance.EquipSeed(null);
+
+            return true;
+        }
+
+        if (plantField.GetState() == 4)
+        {
+            int? toolItemId = EquipManager.Instance.GetToolItemId();
+            if (toolItemId == null)
             {
-                Debug.Log("Tohum bulunamadı.");
+                Debug.Log("Hasat için alet gereklidir.");
                 return false;
             }
 
-            EquipManager.Instance.EquipSeed(null);
-            plantField.Plant((SeedSO)seedItem, ((ToolSO)toolItem).plantTimeBoost);
+            ItemSO toolItem = DataManager.Instance.GetItem((int)toolItemId);
+            plantField.Harvest(((ToolSO)toolItem).harvestTimeBoost);
+
+            return true;
         }
 
         return true;

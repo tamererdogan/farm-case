@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Item / New Seed")]
 public class SeedSO : ItemSO
 {
+    public int cropId;
+
     public float plantTime;
 
     public float growthTime;

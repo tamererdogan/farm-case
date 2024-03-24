@@ -18,6 +18,7 @@ MonoBehaviour:
   prefab: {fileID: 7284732273271940028, guid: 15ff8cad0b6b7d94996c97d1ce360c63, type: 3}
   buyPrice: 100
   sellPrice: 80
+  cropId: 8
   plantTime: 5
   growthTime: 40
   harvestTime: 7
