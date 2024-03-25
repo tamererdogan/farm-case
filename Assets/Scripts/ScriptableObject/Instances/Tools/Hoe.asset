@@ -19,5 +19,6 @@ MonoBehaviour:
   prefab: {fileID: 2975893523588701139, guid: 75f388df669aee041b659a9d09ab912a, type: 3}
   buyPrice: 250
   sellPrice: 200
+  taskExp: 10
   harvestTimeBoost: 4
   plantTimeBoost: 3

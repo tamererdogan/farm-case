@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class TaskManager : MonoBehaviour
@@ -19,11 +20,24 @@ public class TaskManager : MonoBehaviour
     }
     #endregion SINGLETON
 
+    [SerializeField]
+    private GameObject taskListUI;
+
+    [SerializeField]
+    private GameObject taskTextPrefab;
+
+    [SerializeField]
+    private TMP_Text gainText;
+
+    private List<GameObject> taskObjects = new List<GameObject>();
+
     private TaskBag currentTaskBag;
 
     private List<TaskItem> tutorialTasks;
 
     Dictionary<string, int[]> actionItems;
+
+    public Dictionary<string, int> actionRates { get; private set; }
 
     public Dictionary<string, string> actionTranslate { get; private set; }
 
@@ -35,6 +49,12 @@ public class TaskManager : MonoBehaviour
         actionItems["harvest"] = new int[] { 6, 7, 8 };
         actionItems["sell"] = new int[] { 6, 7, 8 };
 
+        actionRates = new Dictionary<string, int>();
+        actionRates["buy"] = 1;
+        actionRates["plant"] = 2;
+        actionRates["harvest"] = 3;
+        actionRates["sell"] = 1;
+
         actionTranslate = new Dictionary<string, string>();
         actionTranslate["buy"] = "satın al";
         actionTranslate["plant"] = "ek";
@@ -44,10 +64,10 @@ public class TaskManager : MonoBehaviour
         tutorialTasks = new List<TaskItem>
         {
             new TaskItem(1, 0, "buy"),
-            new TaskItem(1, 4, "buy"),
-            new TaskItem(1, 4, "plant"),
-            new TaskItem(1, 4, "harvest"),
-            new TaskItem(1, 7, "sell")
+            new TaskItem(1, 3, "buy"),
+            new TaskItem(1, 3, "plant"),
+            new TaskItem(1, 6, "harvest"),
+            new TaskItem(1, 6, "sell")
         };
 
         NextTask();
@@ -77,7 +97,7 @@ public class TaskManager : MonoBehaviour
         int taskItemCount = Random.Range(1, level + 1);
         for (int i = 0; i < taskItemCount; i++)
         {
-            string selectedAction = actions[Random.Range(0, 4)];
+            string selectedAction = actions[Random.Range(0, actions.Length)];
             int totalCount = Random.Range(1, level * 2);
 
             int[] filteredItems = DataManager.Instance.GetItemWithMaxLevelFilter(level);
@@ -97,12 +117,37 @@ public class TaskManager : MonoBehaviour
 
     private void UpdateDisplay()
     {
+        foreach (var taskObject in taskObjects)
+            Destroy(taskObject);
+
         TaskItem[] taskItems = currentTaskBag.taskItems.ToArray();
-        Debug.Log("---------");
         foreach (var taskItem in taskItems)
         {
-            Debug.Log("Test Görev: " + taskItem.GetTaskText());
+            GameObject taskObject = Instantiate(taskTextPrefab, taskListUI.transform);
+            TMP_Text textObject = taskObject.GetComponent<TMP_Text>();
+            textObject.text = taskItem.GetTaskText();
+            textObject.color = taskItem.IsDone() ? Color.green : Color.white;
+            taskObjects.Add(taskObject);
         }
-        Debug.Log("---------");
+
+        gainText.text = "Exp: " + currentTaskBag.GetGainExp();
+    }
+
+    public void CheckTask(string action, int itemId)
+    {
+        foreach (var taskItem in currentTaskBag.taskItems)
+        {
+            if (taskItem.action == action && taskItem.itemId == itemId)
+                taskItem.IncreaseCount();
+        }
+
+        UpdateDisplay();
+
+        if (!currentTaskBag.IsDone())
+            return;
+
+        LevelManager.Instance.AddExp(currentTaskBag.GetGainExp());
+
+        NextTask();
     }
 }

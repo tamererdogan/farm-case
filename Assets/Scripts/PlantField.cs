@@ -72,6 +72,7 @@ public class PlantField : MonoBehaviour
         this.seedSO = seedSO;
         this.plantTimeBoost = plantTimeBoost;
         fxObject.SetActive(true);
+        TaskManager.Instance.CheckTask("plant", seedSO.id);
         NextState();
     }
 
@@ -79,6 +80,7 @@ public class PlantField : MonoBehaviour
     {
         this.harvestTimeBoost = harvestTimeBoost;
         fxObject.SetActive(true);
+        TaskManager.Instance.CheckTask("harvest", seedSO.cropId);
         NextState();
     }
 

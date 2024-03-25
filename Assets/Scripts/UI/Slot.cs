@@ -124,8 +124,12 @@ public class Slot
             ItemSO item = DataManager.Instance.GetItem((int)itemId);
             if (item == null)
                 return;
+
             InventoryManager.Instance.AddMoney(item.sellPrice);
             InventoryManager.Instance.RemoveItem(id);
+
+            TaskManager.Instance.CheckTask("sell", (int)itemId);
+
             return;
         }
 
@@ -152,6 +156,9 @@ public class Slot
 
             InventoryManager.Instance.SubMoney(item.buyPrice);
             InventoryManager.Instance.AddItem(item.id);
+
+            TaskManager.Instance.CheckTask("buy", item.id);
+
             return;
         }
     }

@@ -13,4 +13,30 @@ public class TaskBag
     {
         this.taskItems = taskItems;
     }
+
+    public bool IsDone()
+    {
+        int doneTaskCount = 0;
+        TaskItem[] taskItems = this.taskItems.ToArray();
+        foreach (var taskItem in taskItems)
+        {
+            if (taskItem.IsDone())
+                doneTaskCount++;
+        }
+
+        return taskItems.Length == doneTaskCount;
+    }
+
+    public int GetGainExp()
+    {
+        int gainExp = 0;
+        TaskItem[] taskItems = this.taskItems.ToArray();
+        foreach (var taskItem in taskItems)
+            gainExp +=
+                DataManager.Instance.GetItemExp(taskItem.itemId)
+                * TaskManager.Instance.actionRates[taskItem.action]
+                * taskItem.totalCount;
+
+        return gainExp;
+    }
 }

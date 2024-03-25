@@ -42,6 +42,12 @@ public class DataManager : MonoBehaviour
         return item == null ? "" : item.itemName;
     }
 
+    public int GetItemExp(int id)
+    {
+        ItemSO? item = GetItem(id);
+        return item == null ? 0 : item.taskExp;
+    }
+
     public int[] GetItemWithMaxLevelFilter(int maxLevel)
     {
         List<int> itemIds = new List<int>();

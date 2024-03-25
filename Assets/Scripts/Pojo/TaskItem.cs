@@ -24,7 +24,7 @@ public class TaskItem
     public void IncreaseCount()
     {
         currentCount++;
-        totalCount = currentCount > totalCount ? totalCount : currentCount;
+        currentCount = currentCount >= totalCount ? totalCount : currentCount;
     }
 
     public string GetTaskText()
@@ -33,6 +33,11 @@ public class TaskItem
             + " adet "
             + DataManager.Instance.GetItemName(itemId)
             + " "
-            + TaskManager.Instance.actionTranslate[action];
+            + TaskManager.Instance.actionTranslate[action]
+            + " ("
+            + currentCount
+            + "/"
+            + totalCount
+            + ")";
     }
 }

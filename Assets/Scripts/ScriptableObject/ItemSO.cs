@@ -15,4 +15,6 @@ public class ItemSO : ScriptableObject
     public float buyPrice;
 
     public float sellPrice;
+
+    public int taskExp;
 }

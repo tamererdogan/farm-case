@@ -19,3 +19,4 @@ MonoBehaviour:
   prefab: {fileID: 8197234356783598446, guid: 2f4a41274bac83d43a9c3f022699683a, type: 3}
   buyPrice: 0
   sellPrice: 200
+  taskExp: 15
