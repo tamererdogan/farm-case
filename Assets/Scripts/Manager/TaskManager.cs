@@ -21,6 +21,9 @@ public class TaskManager : MonoBehaviour
     #endregion SINGLETON
 
     [SerializeField]
+    private GameObject taskConsoleUI;
+
+    [SerializeField]
     private GameObject taskListUI;
 
     [SerializeField]
@@ -149,5 +152,10 @@ public class TaskManager : MonoBehaviour
         LevelManager.Instance.AddExp(currentTaskBag.GetGainExp());
 
         NextTask();
+    }
+
+    public void ToggleUI()
+    {
+        taskConsoleUI.SetActive(!taskConsoleUI.activeSelf);
     }
 }

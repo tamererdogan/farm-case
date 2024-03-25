@@ -45,10 +45,14 @@ public class FirstPersonController : MonoBehaviour
         playerInput.Player.MarketButton.Enable();
         playerInput.Player.PickButton.Enable();
         playerInput.Player.EscapeButton.Enable();
+        playerInput.Player.TaskButton.Enable();
+        playerInput.Player.LogButton.Enable();
         playerInput.Player.InventoryButton.performed += InventoryButtonClicked;
         playerInput.Player.MarketButton.performed += MarketButtonClicked;
         playerInput.Player.PickButton.performed += PickButtonClicked;
         playerInput.Player.EscapeButton.performed += EscapeButtonClicked;
+        playerInput.Player.TaskButton.performed += TaskButtonClicked;
+        playerInput.Player.LogButton.performed += LogButtonClicked;
     }
 
     void Update()
@@ -220,6 +224,16 @@ public class FirstPersonController : MonoBehaviour
                 LockCursor();
             return;
         }
+    }
+
+    private void TaskButtonClicked(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        TaskManager.Instance.ToggleUI();
+    }
+
+    private void LogButtonClicked(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        ConsoleManager.Instance.ToggleUI();
     }
 
     private bool IsUIOpen()

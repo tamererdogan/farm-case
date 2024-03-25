@@ -20,6 +20,9 @@ public class ConsoleManager : MonoBehaviour
     #endregion SINGLETON
 
     [SerializeField]
+    private GameObject consoleUI;
+
+    [SerializeField]
     private GameObject contentUI;
 
     [SerializeField]
@@ -39,5 +42,10 @@ public class ConsoleManager : MonoBehaviour
         textObject.color = color;
 
         scrollbar.value = 0f;
+    }
+
+    public void ToggleUI()
+    {
+        consoleUI.SetActive(!consoleUI.activeSelf);
     }
 }

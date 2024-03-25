@@ -4891,6 +4891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bb5226a7cdb0b146833e3788a4e5b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  consoleUI: {fileID: 356189300}
   contentUI: {fileID: 1469117963}
   scrollbar: {fileID: 1729951381}
   messagePrefab: {fileID: 6041189692380972342, guid: 674f3cf76d8d0c041ba4473ba5751bc6, type: 3}
@@ -4906,6 +4907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad6134c2ff650b47a949d671ca45ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskConsoleUI: {fileID: 1014776677}
   taskListUI: {fileID: 188281140}
   taskTextPrefab: {fileID: 1995640206413541123, guid: b29a1e7bb871960498751382a78fa284, type: 3}
   gainText: {fileID: 1746388571}

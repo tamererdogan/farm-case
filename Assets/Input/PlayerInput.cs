@@ -80,6 +80,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TaskButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce757dbe-de0a-493c-a5f0-bf3cd57c40c5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LogButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""fa7f1415-77e5-4ce3-b0ca-ae6fe6fc8002"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +210,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""EscapeButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb59b044-45ef-4f15-a9fd-c1637b196903"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keybord&Mouse"",
+                    ""action"": ""TaskButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3727ee62-1136-4d71-a51c-895b0397abba"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keybord&Mouse"",
+                    ""action"": ""LogButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -223,6 +263,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_MarketButton = m_Player.FindAction("MarketButton", throwIfNotFound: true);
         m_Player_PickButton = m_Player.FindAction("PickButton", throwIfNotFound: true);
         m_Player_EscapeButton = m_Player.FindAction("EscapeButton", throwIfNotFound: true);
+        m_Player_TaskButton = m_Player.FindAction("TaskButton", throwIfNotFound: true);
+        m_Player_LogButton = m_Player.FindAction("LogButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -290,6 +332,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MarketButton;
     private readonly InputAction m_Player_PickButton;
     private readonly InputAction m_Player_EscapeButton;
+    private readonly InputAction m_Player_TaskButton;
+    private readonly InputAction m_Player_LogButton;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -300,6 +344,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @MarketButton => m_Wrapper.m_Player_MarketButton;
         public InputAction @PickButton => m_Wrapper.m_Player_PickButton;
         public InputAction @EscapeButton => m_Wrapper.m_Player_EscapeButton;
+        public InputAction @TaskButton => m_Wrapper.m_Player_TaskButton;
+        public InputAction @LogButton => m_Wrapper.m_Player_LogButton;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,6 +373,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @EscapeButton.started += instance.OnEscapeButton;
             @EscapeButton.performed += instance.OnEscapeButton;
             @EscapeButton.canceled += instance.OnEscapeButton;
+            @TaskButton.started += instance.OnTaskButton;
+            @TaskButton.performed += instance.OnTaskButton;
+            @TaskButton.canceled += instance.OnTaskButton;
+            @LogButton.started += instance.OnLogButton;
+            @LogButton.performed += instance.OnLogButton;
+            @LogButton.canceled += instance.OnLogButton;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -349,6 +401,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @EscapeButton.started -= instance.OnEscapeButton;
             @EscapeButton.performed -= instance.OnEscapeButton;
             @EscapeButton.canceled -= instance.OnEscapeButton;
+            @TaskButton.started -= instance.OnTaskButton;
+            @TaskButton.performed -= instance.OnTaskButton;
+            @TaskButton.canceled -= instance.OnTaskButton;
+            @LogButton.started -= instance.OnLogButton;
+            @LogButton.performed -= instance.OnLogButton;
+            @LogButton.canceled -= instance.OnLogButton;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -383,5 +441,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnMarketButton(InputAction.CallbackContext context);
         void OnPickButton(InputAction.CallbackContext context);
         void OnEscapeButton(InputAction.CallbackContext context);
+        void OnTaskButton(InputAction.CallbackContext context);
+        void OnLogButton(InputAction.CallbackContext context);
     }
 }
