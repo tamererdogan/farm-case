@@ -7,6 +7,9 @@ public class SettingsButtonActions : MonoBehaviour
     private GameObject settingsUI;
 
     [SerializeField]
+    private GameObject controlsUI;
+
+    [SerializeField]
     private TMP_Text volumeValueInfo;
 
     [SerializeField]
@@ -21,6 +24,11 @@ public class SettingsButtonActions : MonoBehaviour
     public void CloseSettingsAction()
     {
         settingsUI.SetActive(false);
+    }
+
+    public void CloseControlsAction()
+    {
+        controlsUI.SetActive(false);
     }
 
     public void VolumeUpAction()

@@ -6,6 +6,9 @@ public class MenuButtonActions : MonoBehaviour
     [SerializeField]
     private GameObject settingsUI;
 
+    [SerializeField]
+    private GameObject controlsUI;
+
     public void PlayButtonAction()
     {
         SceneManager.LoadScene("GameScene");
@@ -15,6 +18,11 @@ public class MenuButtonActions : MonoBehaviour
     public void SettingsButtonAction()
     {
         settingsUI.SetActive(true);
+    }
+
+    public void ControlsButtonAction()
+    {
+        controlsUI.SetActive(true);
     }
 
     public void ExitButtonAction()
